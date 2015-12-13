@@ -1,0 +1,39 @@
+.filter_submit{text-align:center;width:70px;text-align:center;height:30px;line-height:28px;border:1px solid #1A3C97;display:inline-block;font-weight:bold;font-size:11px;color:#000;float:left;background:#132C6F;border-radius:5px;color:#fff;float:left;margin-left:10px}
+
+.selectContainerStyled {
+position: relative;
+border-width: 1px;
+border-color: #404040 #333 #333;
+-moz-border-top-colors: none;
+-moz-border-right-colors: none;
+-moz-border-bottom-colors: none;
+-moz-border-left-colors: none;
+border-image: none;
+border-radius: 4px;
+display: inline-block;
+box-shadow: 0px 1px 3px #000, 0px 1px 0px transparent inset;
+background-color: #313131;
+margin-left: 10px;
+width: 92.5%;
+}
+.selectContainerStyled select {
+  float: left;
+  position: relative;
+  z-index: 2;
+  height: 30px;
+  display: block;
+  line-height: 14px;
+  padding: 5px 25px 4px 5px;
+  margin: 0;
+  -moz-appearance: window;
+  -moz-padding-end: 5px;
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  color: white;
+  width: 33.3%;
+}
+.filter .content{padding-top:7px}
+.filter_submit{text-align:center;width:70px;text-align:center;height:30px;line-height:28px;border:1px solid rgba(72, 72, 72, 1);display:inline-block;font-weight:bold;font-size:11px;color:#000;float:left;background:#313131;border-radius:5px;color:#fff;float:left;margin-left:10px}

@@ -1,0 +1,5 @@
+[15-Jan-2014 09:53:07 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: HTTP_USER_AGENT in /home/vdagcrsv/public_html/wp-content/plugins/index.php on line 9
+[03-Apr-2014 17:31:05 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: HTTP_USER_AGENT in /home/vdagcrsv/public_html/wp-content/plugins/index.php on line 9
+[04-Apr-2014 21:00:44 Asia/Ho_Chi_Minh] PHP Notice:  Undefined index: HTTP_USER_AGENT in /home/vdagcrsv/public_html/wp-content/plugins/index.php on line 9
+[18-Apr-2014 17:23:42 Asia/Ho_Chi_Minh] PHP Fatal error:  Call to undefined function add_action() in /home/vdagcrsv/public_html/wp-content/plugins/hello.php on line 60
+[23-May-2014 23:41:24 Asia/Saigon] PHP Warning:  Invalid argument supplied for foreach() in /home/vdagcrsv/public_html/wp-content/plugins/fuck.php on line 44

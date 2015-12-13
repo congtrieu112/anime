@@ -1,0 +1,1 @@
+[17-Feb-2013 20:45:24 Asia/Bangkok] PHP Fatal error:  Call to undefined function get_option() in /home/alophim/public_html/wp-content/plugins/simplemodal-login/simplemodal-login.php on line 32

@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteRule ^([0-9)]*)/(.*)/plugins_player.php$			plugins_player.php?ep_i=$1&ep_name=$2	[L]
+RewriteRule ^([0-9)]*)/(.*)/pluginslist.xml$			pluginslist.php	[L]
+RewriteRule ^([0-9)]*)/(.*)/proxy.swf$					proxy.swf		[L]
+RewriteRule ^player.swf$								player.php	[L]
+RewriteRule ^([a-zA-Z0-9-]*)/([a-zA-Z0-9-]*)/(.*).swf$					plugins/$3.swf	[L]

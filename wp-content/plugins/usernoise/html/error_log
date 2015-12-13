@@ -1,0 +1,6 @@
+[15-Jan-2014 10:11:10 Asia/Ho_Chi_Minh] PHP Fatal error:  Call to undefined function un_get_option() in /home/vdagcrsv/public_html/wp-content/plugins/usernoise/html/button.php on line 1
+[15-Jan-2014 10:11:10 Asia/Ho_Chi_Minh] PHP Notice:  Undefined variable: can_publish in /home/vdagcrsv/public_html/wp-content/plugins/usernoise/html/publish-meta-box.php on line 9
+[15-Jan-2014 10:11:10 Asia/Ho_Chi_Minh] PHP Fatal error:  Call to undefined function _e() in /home/vdagcrsv/public_html/wp-content/plugins/usernoise/html/publish-meta-box.php on line 9
+[15-Jan-2014 10:11:10 Asia/Ho_Chi_Minh] PHP Fatal error:  Call to undefined function _e() in /home/vdagcrsv/public_html/wp-content/plugins/usernoise/html/powered-by.php on line 2
+[15-Jan-2014 10:11:10 Asia/Ho_Chi_Minh] PHP Notice:  Undefined variable: un_h in /home/vdagcrsv/public_html/wp-content/plugins/usernoise/html/reply-meta-box.php on line 2
+[15-Jan-2014 10:11:10 Asia/Ho_Chi_Minh] PHP Fatal error:  Call to a member function textarea() on a non-object in /home/vdagcrsv/public_html/wp-content/plugins/usernoise/html/reply-meta-box.php on line 2

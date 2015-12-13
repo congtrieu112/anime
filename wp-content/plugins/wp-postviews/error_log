@@ -1,0 +1,1 @@
+[29-May-2014 09:19:15 Asia/Ho_Chi_Minh] PHP Fatal error:  Call to undefined function plugin_basename() in /home/vdagcrsv/public_html/wp-content/plugins/wp-postviews/postviews-options.php on line 21

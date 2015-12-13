@@ -1,0 +1,8 @@
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"],
+img.size-full,img.size-large { 
+	max-width: 97.5%;
+	width:auto;
+	height:auto;
+}

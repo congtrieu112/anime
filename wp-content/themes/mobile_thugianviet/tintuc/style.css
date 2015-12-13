@@ -1,0 +1,38 @@
+#device a{
+text-decoration: none;
+}
+#device p {
+display: block;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+}
+#device .item {
+  color: black;
+  border-radius: 3px;
+  padding-left: 10px ;
+  padding-right: 10px ;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+text-align: left;
+border-width: 1px 0 0;
+border: 1px solid rgb(194, 194, 194);
+background: url(bottom.png) no-repeat 100% 100%;
+}
+#device .item  img{
+margin-top: -4px;
+}
+#device .item  p {
+color: #999;
+margin: 0;
+padding: 0;
+margin-top: 5px;
+}
+#device .item  a.name {
+font-weight: bold;
+}
+#device {
+  margin: 10px auto 0;
+}

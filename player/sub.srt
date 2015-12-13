@@ -1,0 +1,8 @@
+﻿1
+00:00:00,000 --> 00:00:05,000
+<b>Chào mừng bạn đến với Web xem phim anime Online miễn phí </b>
+
+2
+00:20:00,000 --> 00:20:05,000
+<b>Chúc bạn có những giây phút xem phim vui vẻ và Click vài quảng cáo ủng hộ website chúng tôi nhé</b>
+
