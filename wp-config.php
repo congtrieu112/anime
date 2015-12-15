@@ -19,7 +19,7 @@
 //define('WP_CACHE', true); //Added by WP-Cache Manager
  set_time_limit(0);
 //define( 'WPCACHEHOME', '/home/vdagcrsv/public_html/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
-define('DB_NAME', 'ami');
+define('DB_NAME', 'anime');
 
 /** MySQL database username */
 define('DB_USER', 'root');
@@ -74,7 +74,7 @@ $table_prefix  = 'wp_';
 */
 define('WPLANG', '');
 define('WP_POST_REVISIONS', false);
-
+define('WP_ALLOW_REPAIR', true);
 /**
 * For developers: WordPress debugging mode.
 *
