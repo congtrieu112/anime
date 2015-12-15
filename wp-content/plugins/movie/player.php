@@ -1,7 +1,7 @@
 <?php
 include('_grab.php');
 function cut_str($str_cut,$str_c,$val)
-{	
+{
 	$url=explode($str_cut,$str_c);
 	$urlv=$url[$val];
 	return $urlv;
@@ -19,17 +19,17 @@ else
 
 $player = '<script type="text/javascript">
 	jwplayer("mediaplayer").setup({
-    "flashplayer": "http://player.xixam.com/player.swf",
+    "flashplayer": "http://test.vn/zp-bootstrap-theme/assets/jwplayer/jwplayer.flash.swf",
     "width": "100%",
     "height": "100%",
     "proxy.link": "'.$url.'",
 	"repeat": "list",
     "autostart": "true",
-	
-	
 
-	
-"skin":"http://static.mananhnho.net/theme/player/skin/mananhnho/mananhnho.xml",
+
+
+
+"skin":"http://test.vn/zp-bootstrap-theme/assets/jwplayer/five.xml",
 "controlbar":"bottom",
     "plugins": "captions,timeslidertooltipplugin-2, fbit-1,http://player.xixam.com/plugins5/proxy.swf",
     "captions.file": "$sub",
@@ -49,12 +49,31 @@ $player = '<script type="text/javascript">
 
         }
 	});
-	</script>';	
-	 
+	</script>';
+$player = '<script type="text/javascript">
+      var playerInstance = jwplayer("mediaplayer");
+      playerInstance.setup({
+        sources: [{
+            file: "'.$url.'",label:"360"
+          }, {
+            file: "http://222.255.123.4/vod/TRUYENHINH/NGHETHUATTONGHOP/BANMUONHENHO/BMHH23_10_2015.mp4",label:"720"
+          }, {
+            file: "http://222.255.123.4/vod/TRUYENHINH/NGHETHUATTONGHOP/BANMUONHENHO/BMHH23_10_2015.mp4",label:"1028"
+            
+          }],
+        image: "http://haugiangtivi.vn/Media/Images/Video/d0720ab644464b68ae03ee7e0eacbf48.jpg",
+        width: 670,
+        height: 400,
+        title: "Basic Video Embed",
+        description: "A video with a basic title and description!",
+        mediaid: "123456"
+      });
+    </script>';
 
-	
+
+
 //$player=base64_encode($player);
-  //return '<script type="text/javascript">document.write(player.decode("'.$player.'"));</script>'; 
+  //return '<script type="text/javascript">document.write(player.decode("'.$player.'"));</script>';
   return $player;
 }
 
@@ -68,7 +87,7 @@ if($type==5 || $type==6 || $type==7 || $type==8 || $type==9 || $type==3)
  $player='<video id="my_video_1" class="video-js vjs-default-skin" controls
  preload="auto" width="100%" height="100%" poster="my_video_poster.png"
  data-setup="{}">
- <source src="'.$url.'" type="video/mp4"> 
+ <source src="'.$url.'" type="video/mp4">
 </video>';
 if($type==16)
 {$url=explode('video/',$url);$url=explode('_',$url[1]);$url=$url[0];
@@ -76,7 +95,7 @@ if($type==16)
 else $player='<iframe width="100%" height="100%" src="'.$url.'" frameborder="0" allowfullscreen></iframe>';
 
 //$player=base64_encode($player);
-  //return '<script type="text/javascript">document.write(player.decode("'.$player.'"));</script>'; 
+  //return '<script type="text/javascript">document.write(player.decode("'.$player.'"));</script>';
   return $player;
 }
 ?>
