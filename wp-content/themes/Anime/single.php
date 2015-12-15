@@ -28,15 +28,15 @@ $description = custom_excerpt($post->post_content,10,'...');
 ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post();?>
-
+<?php if($idtap || $sv!="") { ?>
+<?php include('phim-play.php');?>
+<?php } ?>
 <?php if($idtap=="" && $sv=="") { 
   $idtap = tapphim($idphim);
   ?>
 <?php include('phim-thongtin.php');?>
 <?php } ?>
-<?php if($idtap!="" || $sv!="") { ?>
-<?php include('phim-play.php');?>
-<?php } ?>
+
 
 <?php endwhile;endif;?>
 
