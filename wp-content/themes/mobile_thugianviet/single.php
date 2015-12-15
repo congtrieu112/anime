@@ -13,6 +13,11 @@ $u = $wpdb->query("UPDATE wp_film_meta
 $categories = get_the_category();
 $seperator = ", ";
 $output = '';
+$image =  get_post_meta($post->ID,'Image',true);
+$title = $post->post_title;
+$description = custom_excerpt($post->post_content,10,'...');
+
+
 if($categories){
 	foreach($categories as $category) {
 		$output .= '<a href="'.get_category_link($category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a>'.$seperator;
@@ -24,9 +29,10 @@ $sv = get_query_var('sv');
 $idphim=get_the_ID();
 $permalink = get_permalink( $idphim );
 ?>
+
+<?php if($idtap || $sv!="") { ?>
+<?php include('phim-play.php');?>
+<?php } ?>
 <?php if($idtap=="" && $sv=="") { ?>
 <?php include('phim-thongtin.php');?>
-<?php } ?>
-<?php if($idtap!="" || $sv!="") { ?>
-<?php include('phim-play.php');?>
 <?php } ?>

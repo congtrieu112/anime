@@ -47,6 +47,9 @@ tren mobile</title>
     <script type="text/javascript" src="<?php bloginfo('template_directory');?>/js/event.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory');?>/js/ajax.js"></script>
     <!--<script type="text/javascript" src="<?php bloginfo('template_directory');?>/js/check_mobile.js"></script>-->
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/jwplayer_theme.css"> 
+            <script type="text/javascript" src="http://content.jwplatform.com/libraries/PSq4YSgZ.js"></script>
+            <script type="text/javascript">jwplayer.key = '83tV+S0kCYI/D2CIhRollTeLZBbTOcFO3ta94A=='</script>
 
 </head>
 <body>

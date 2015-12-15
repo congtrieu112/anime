@@ -3,14 +3,14 @@
 <?php if(have_posts())	:?>
 
   <script>
-    videojs.options.flash.swf = "http://thugianviet.net/video-js/video-js.swf";
+//    videojs.options.flash.swf = "http://thugianviet.net/video-js/video-js.swf";
   </script>
 <div class="container play-video" id="fnBody">
                 <div class="content" id="fnBodyContent">
 				                    <div class="content-items">
 
-                    <div class="jp-player-video">
-<?php echo getlinkphimmobile($idphim,$idtap,$sv);?>
+                    <div class="jp-player-video" id="play-video">
+<?php echo getlinkphimmobile($idphim,$idtap,$sv,$image,$title,$description,$idtap);?>
 </div>
 			<span class="ver-film">	
 <?php echo episode_show($idphim);?>

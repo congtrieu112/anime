@@ -443,7 +443,7 @@ return $output;
 require_once('cache.php');
 require_once('function_func.php');
 require_once('function_custom_type.php');  
-
+require_once('getvideo.php');  
 define( 'DISALLOW_FILE_EDIT', true );
 
 ?>

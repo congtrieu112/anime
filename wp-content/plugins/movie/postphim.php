@@ -1104,7 +1104,7 @@ echo '<link rel="canonical" href="http://'.$_SERVER["HTTP_HOST"].''.parse_url($_
   }
 include('player.php');
 include('meta.php');
-function getlinkphimmobile($idphim,$idtap,$sv=''){
+function getlinkphimmobile($idphim,$idtap,$sv='',$image,$title,$description){
 global $wpdb,$idtap;
 $episode_url = get_bloginfo('url')."/player-".$idtap."/";
 
@@ -1114,7 +1114,7 @@ $fivesdrafts = $wpdb->get_row("SELECT episode_id, episode_name, episode_type, ep
 	WHERE episode_film = '".$idphim."' AND episode_id='".$idtap."'");
 if($fivesdrafts){
 	$sub=$fivesdrafts->episode_sub;
-	$player=players2($fivesdrafts->episode_url,$sub);
+	$player=players2($fivesdrafts->episode_url,$sub,$image,$title,$description,$idtap);
 	}
 }
 return $player;
