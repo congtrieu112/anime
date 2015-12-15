@@ -16,25 +16,26 @@ ob_start();
 
 add_action('admin_menu', 'add_custom_box');
 add_action('save_post', 'save_custom_box');
-remove_filter('template_redirect', 'redirect_canonical'); 
+remove_filter('template_redirect', 'redirect_canonical');
 remove_action('wp_head', 'rel_canonical');
 function add_custom_box() {
     add_meta_box( 'vn_news_id', 'Nhập link phim', 'show_custom_box', 'post', 'normal' );
     add_meta_box( 'vn_news_id', 'Link phim', 'show_custom_box', 'page', 'normal' );
 	add_meta_box( 'vn_news_id', 'Link phim', 'show_custom_box', 'phim', 'normal' );
 }
-   
+
 function show_custom_box() {
 	global $post;
+  $value = get_post_meta($post->ID,'vnnews_noncename',true);
 	echo '<input type="hidden" name="vnnews_noncename" id="vnnews_noncename" value="'.wp_create_nonce( plugin_basename(__FILE__) ).'" />'."\n";
 	echo '<p style="font-size: 0.9em; color: #000; margin: 0;">(Mỗi tên tập, link, thứ tự ưu tiên viết cách nhau bởi dấu thăng (#), mỗi link ở một dòng.)<br>
 							Ví dụ: <br>
 							Tập 1#link1#1<br>
 							Tập 2#link2#2</p>';
-	echo '<textarea id="film_episode" rows="10" style="width: 70%;" name="vnn_thumbnail"></textarea><br/><br/>';
+	echo '<textarea id="film_episode" rows="10" style="width: 70%;" name="vnn_thumbnail">'.$value.'</textarea><br/><br/>';
 
-	
-	
+
+
 }
 
 function save_custom_box( $post_id ) {
@@ -45,19 +46,20 @@ function save_custom_box( $post_id ) {
 		if ( !current_user_can( 'edit_post', $post_id )){
 			return $post_id;
 			         }
-	
+
 	global $wpdb,$post;
 
 
 if(check_fiml_meta($post->ID)==false) {add_film_meta($post->ID);}
 	$meta_value=$_POST['vnn_thumbnail'];
-	$data=explode('|',$meta_value);	
+  update_post_meta($post->ID,'vnnews_noncename',$meta_value);
+	$data=explode('|',$meta_value);
 	if ($meta_value!="") {
 			$episode_post = $_POST['vnn_thumbnail'];
-			$episode_film=$post->ID;			
+			$episode_film=$post->ID;
 			$list_episode = explode ( "\n", $episode_post );
 			$count_ep = count ( $list_episode );
-			
+
 			for($i = 0; $i < $count_ep; $i ++) {
 				$tap [$i] = explode ( '#', trim ( $list_episode [$i] ) );
 				$ten_tap [$i] = trim ( $tap [$i] [0] );
@@ -66,15 +68,15 @@ if(check_fiml_meta($post->ID)==false) {add_film_meta($post->ID);}
 				if(FilmEpisodeNewEpisode($ten_tap [$i],$post->ID,$_POST['episode_server'],$link_tap [$i],$thu_tu [$i],time())) {
 					$tb .= $ten_tap [$i] . ' - ';
 				}
-				else 
+				else
 					echo '<div id="message" class="error fade" style="background-color: rgb(218, 79, 33);"><br/><b>L?i ! t?p '.$ten_tap [$i].' server '.$_POST['episode_server'].' d� t?n t?i</b><br/><br/></div>';
 			}
-			
-			
+
+
 
 		}
 
-	
+
 	return $meta_value;
 }
 function acp_type($url) {
@@ -98,13 +100,13 @@ function acp_type($url) {
 		'vob',
 		'smi',
 	);
-	
+
 	$extra_swf_arr = array(
 		//'www.dailymotion.com',
 		//'www.metacafe.com',
 		'www.livevideo.com',
 	);
-	
+
 	for ($i=0;$i<count($extra_swf_arr);$i++){
 		if (preg_match("#^http://".$extra_swf_arr[$i]."/(.*?)#s",$url)) {
 			$type = 2;
@@ -120,7 +122,7 @@ $is_youtube2 = (preg_match("#youtube.com/p/(.*?)#",$url));
 	$is_tamtay = (preg_match("#http://video.tamtay.vn/play/([^/]+)(.*?)#s",$url,$idvideo_tamtay));
 	$is_vidbull = (preg_match("#http://vidbull.com/(.*?)#s",$url));
 	$is_clipvn = (preg_match("#clip.vn/embed/([^/]+)/([^,]+),#",$url));
-	$is_clipvn1 = (preg_match("#clip.vn/embed/(.*?)#s",$url));	
+	$is_clipvn1 = (preg_match("#clip.vn/embed/(.*?)#s",$url));
 	$is_googleVideo = (preg_match("#http://video.google.com/videoplay\?docid=(.*?)#s",$url));
 	$is_myspace = (preg_match("#http://vids.myspace.com/index.cfm\?fuseaction=vids.individual&VideoID=(.*?)#s",$url));
 	$is_vidbull = (preg_match("#http://vidbull.com/([^/_]+)_([^/.]+).html#s",$url));
@@ -130,7 +132,7 @@ $is_youtube2 = (preg_match("#youtube.com/p/(.*?)#",$url));
         $is_zing2 = (preg_match("#http://tv.zing.vn/video/([^/.]+)/([^/.]+)/(.*?).html#s",$url));
         $is_zing3 = (preg_match("#http://tv.zing.vn/embed/video/(.*?)#s",$url));
 	$is_veoh = (preg_match("#http://www.veoh.com/watch/(.*?)#s",$url));
-	
+
 	$is_veoh1 = (preg_match("#http://www.veoh.com/browse/videos/category/([^/]+)/watch/(.*?)#s",$url));
 	$is_vimeo = (preg_match("#http://www.vimeo.com/(.*?)#s",$url));
         $is_vimeo1 = (preg_match("#http://vimeo.com/(.*?)#s",$url));
@@ -158,7 +160,7 @@ $is_youtube2 = (preg_match("#youtube.com/p/(.*?)#",$url));
     $is_dankfile = (preg_match("#http://www.dankfile.com/(.*?)#s", $url));
     $is_tusfiles = (preg_match("#http://tusfiles.net/(.*?)#s", $url));
     $is_speedyshare = (preg_match("#http://www.speedyshare.com/files/(.*?)/(.*?)#s", $url));
-    $is_ovfile = (preg_match("#http://ovfile.com/(.*?)#s", $url));    
+    $is_ovfile = (preg_match("#http://ovfile.com/(.*?)#s", $url));
     $is_videobb = (preg_match("#http://videobb.com/video/(.*?)#s", $url));
 	$is_wootly = (preg_match("#http://www.wootly.com/(.*?)#s", $url));
     $is_vipbee = (preg_match("#http://megafun.vn/channel/(.*?)#s",$url));
@@ -321,7 +323,7 @@ function set_type($file_type='') {
 		"<option value=29".(($file_type==29)?' selected':'').">29 - 4Shared</option>".
 		"<option value=31".(($file_type==31)?' selected':'').">31 - Gdata</option>".
 		"<option value=32".(($file_type==32)?' selected':'').">32 - Download</option>".
-		
+
 		"<option value=35".(($file_type==35)?' selected':'').">35 - Cyworld</option>".
 		"<option value=36".(($file_type==36)?' selected':'').">36 - 2Shared</option>".
 		"<option value=37".(($file_type==37)?' selected':'').">37 - Cine Cyworld</option>".
@@ -361,7 +363,7 @@ function set_type($file_type='') {
 		"<option value=72".(($file_type==72)?' selected':'').">72 - Rolo</option>".
 		"<option value=73".(($file_type==73)?' selected':'').">73 - Eyvx</option>".
 		"<option value=74".(($file_type==74)?' selected':'').">74 - Vzaar</option>".
-		"<option value=75".(($file_type==75)?' selected':'').">75 - Playwire</option>".	
+		"<option value=75".(($file_type==75)?' selected':'').">75 - Playwire</option>".
 		"<option value=76".(($file_type==76)?' selected':'').">76 - Bcove</option>".
 		"<option value=77".(($file_type==77)?' selected':'').">77 - Sorenson</option>".
 		"<option value=78".(($file_type==78)?' selected':'').">78 - Ooyala</option>".
@@ -382,7 +384,7 @@ function set_type($file_type='') {
 		"<option value=93".(($file_type==93)?' selected':'').">93 - DivXcabin</option>".
 		"<option value=94".(($file_type==94)?' selected':'').">94 - DivxStage</option>".
 		"<option value=95".(($file_type==95)?' selected':'').">95 - XvidStage</option>".
-	
+
 
 		"</select>";
 	return $html;
@@ -393,7 +395,7 @@ function episode_show($film_id){
 	$permalink_sv =get_bloginfo('url')."/xem-phim-".$post->post_name."/";
 $list=$wpdb->get_results("SELECT episode_id, episode_name, episode_type, episode_url,episode_film,episode_server FROM wp_film_episode WHERE episode_film = '".$film_id."' order by episode_order asc");
 
-foreach ( $list as $value ) 
+foreach ( $list as $value )
 {
 $episode_type=$value->episode_type;
 $name=$value->episode_name;
@@ -825,7 +827,7 @@ function episode_showadmin($film_id){
 	global $wpdb;
 $list=$wpdb->get_results("SELECT episode_id, episode_name, episode_type, episode_url FROM wp_film_episode WHERE episode_film = '".$film_id."' ");
 echo '<form action="" method="post">';
-foreach ( $list as $value ) 
+foreach ( $list as $value )
 {
 echo "<input type=\"text\" name=\"tap".$value->episode_id."\" value=\"".$value->episode_name."\"><input name=\"".$value->episode_id."\" type=\"text\" value=\"".$value->episode_url."\" size=\"80%\" id=\"tap".$value->episode_id."\" /></br>";
 echo '</form>';
@@ -836,7 +838,7 @@ echo '</form>';
 function xemphim($film_id){
 	global $wpdb,$post;
 $list=$wpdb->get_results("SELECT episode_id, episode_name, episode_type, episode_url FROM wp_film_episode WHERE episode_film = '".$film_id."' order by episode_order limit 1 ");
-foreach ( $list as $value ) 
+foreach ( $list as $value )
 {
 $name=$value->episode_name;
 $tap=$value->episode_id;
@@ -846,7 +848,7 @@ return $permalink;
 }
 
 }
-function getlinkphim($idphim,$idtap,$sv=''){
+function getlinkphim($idphim,$idtap,$sv='',$image,$title,$description,$postid){
 global $wpdb,$idtap;
 $episode_url = get_bloginfo('url')."/player-".$idtap."/";
 $sub=get_post_meta($idphim, "phim_sub", true);
@@ -856,12 +858,12 @@ $fivesdrafts = $wpdb->get_row("SELECT episode_id, episode_name, episode_type, ep
 	FROM wp_film_episode
 	WHERE episode_film = '".$idphim."' AND episode_id='".$idtap."'");
 if($fivesdrafts){
-	$player=players($fivesdrafts->episode_url,$sub);
+	$player=players($fivesdrafts->episode_url,$sub,$image,$title,$description,$postid);
 	}
 }
 else {
 $ep_url="http://player.alophim.biz/".$idphim."-sv".$sv.".xml";
-$player=players($ep_url,$sub);
+$player=players($ep_url,$sub,$image,$title,$description,$postid);
 }
 return $player;
 
@@ -910,9 +912,9 @@ $fivesdrafts = $wpdb->get_row("SELECT episode_id, episode_name, episode_type, ep
 $tap=$fivesdrafts->episode_name;
 return $tap;
 }
-add_action('init', 'creat_film_taxonomies'); 
+add_action('init', 'creat_film_taxonomies');
 function creat_film_taxonomies() {
-	register_taxonomy('danh-muc', array('post','trailer'), 
+	register_taxonomy('danh-muc', array('post','trailer'),
 		array(
 			'hierarchical'  =>  true,
 			'labels' => array(
@@ -922,10 +924,10 @@ function creat_film_taxonomies() {
 				'add_new_item' => 'Thêm danh mục',
 				'new_item' => 'Danh mục mới',
 				'search_item' => 'Tìm kiếm danh mục'
-				),			
+				),
 		)
 	);
-	register_taxonomy('quoc-gia', array('post','trailer'), 
+	register_taxonomy('quoc-gia', array('post','trailer'),
 		array(
 			'hierarchical'  =>  true,
 			'labels' => array(
@@ -936,10 +938,10 @@ function creat_film_taxonomies() {
 				'new_item' => 'Quốc gia mới',
 				'search_item' => 'Tìm kiếm quốc gia',
 'rewrite'             => array( 'slug' => 'quoc-gia' )
-				),			
+				),
 		)
 	);
-	register_taxonomy('nha-san-xuat', array('post','trailer'), 
+	register_taxonomy('nha-san-xuat', array('post','trailer'),
 		array(
 			'hierarchical'  =>  false,
 			'labels' => array(
@@ -949,10 +951,10 @@ function creat_film_taxonomies() {
 				'add_new_item' => 'Thêm Nhà sản xuất',
 				'new_item' => 'Nhà sản xuất mới',
 				'search_item' => 'Tìm kiếm Nhà sản xuất'
-				),			
+				),
 		)
 	);
-	register_taxonomy('dao-dien', 'post', 
+	register_taxonomy('dao-dien', 'post',
 		array(
 			'hierarchical'  =>  false,
 			'labels' => array(
@@ -963,10 +965,10 @@ function creat_film_taxonomies() {
 				'new_item' => 'Đạo diễn mới',
 				'search_item' => 'Tìm kiếm đạo diễn',
 'rewrite'             => array( 'slug' => 'dao-dien' )
-				),			
+				),
 		)
 	);
-	register_taxonomy('dien-vien', array('post','trailer'), 
+	register_taxonomy('dien-vien', array('post','trailer'),
 		array(
 			'hierarchical'  =>  false,
 			'labels' => array(
@@ -977,10 +979,10 @@ function creat_film_taxonomies() {
 				'new_item' => 'Diễn viên mới',
 				'search_item' => 'Tìm kiếm Diễn viên',
 'rewrite'             => array( 'slug' => 'dien-vien' )
-				),			
+				),
 		)
 	);
-	register_taxonomy('nam-san-xuat', array('post','trailer'), 
+	register_taxonomy('nam-san-xuat', array('post','trailer'),
 		array(
 			'hierarchical'  =>  false,
 			'labels' => array(
@@ -990,9 +992,9 @@ function creat_film_taxonomies() {
 				'add_new_item' => 'Thêm Năm sản xuất',
 				'new_item' => 'Năm mới',
 				'search_item' => 'Tìm kiếm Năm sản xuất'
-				),			
+				),
 		)
-	);	
+	);
 }
 add_action('init', 'creat_post_tin_tuc');
 function creat_post_tin_tuc () {
@@ -1022,20 +1024,20 @@ function creat_post_tin_tuc () {
 	        'query_var' =>  true,
 	        'supports'  =>  array(
 	          'title', 'editor', 'comments', 'author', 'thumbnail',
-	          
+
 	        ),
 	        'rewrite' =>  array('slug'  =>  'tin-tuc', 'with_front' =>  false),
 	        'taxonomies' =>  array('post_tag'), //, 'category'
 	        'can_export'  =>  true,
 	        'register_meta_box_cb'  =>  'create_film_meta_box',
 	        'description' =>  __('Giới thiệu ngắn về Tin tức.')
-	      )        
+	      )
 	);
 }
 
-add_action('init', 'creat_tin_tuc_taxonomies'); 
+add_action('init', 'creat_tin_tuc_taxonomies');
 function creat_tin_tuc_taxonomies() {
-	register_taxonomy('danh-muc', array('tin-tuc','trailer'), 
+	register_taxonomy('danh-muc', array('tin-tuc','trailer'),
 		array(
 			'hierarchical'  =>  true,
 			'labels' => array(
@@ -1045,10 +1047,10 @@ function creat_tin_tuc_taxonomies() {
 				'add_new_item' => 'Thêm danh mục',
 				'new_item' => 'Danh mục mới',
 				'search_item' => 'Tìm kiếm danh mục'
-				),			
+				),
 		)
 	);
-}		
+}
 add_filter( 'query_vars', 'get_tap_phim' );
 add_filter( 'query_vars', 'get_sv_phim' );
 add_filter( 'query_vars', 'get_ten_phim' );
@@ -1057,12 +1059,12 @@ remove_action( 'wp_head', 'rel_canonical' );
 add_action( 'wp_head', 'new_rel_canonical' );
 function rewrite_permalink_post( $wp_rewrite ) {
 
-		
-    $wp_rewrite->rules = array(		
-        'xem-phim-([^/]+)-([^/]+)?$' => 'index.php?name=$matches[1]&ep=$matches[2]',		
+
+    $wp_rewrite->rules = array(
+        'xem-phim-([^/]+)-([^/]+)?$' => 'index.php?name=$matches[1]&ep=$matches[2]',
 		'xem-phim-([^/]+)/sv([^/]+)?$' => 'index.php?name=$matches[1]&sv=$matches[2]',
-		'xem-phim/([^/]+)/tap-([^/]+)\.([^/]+)?$' => 'index.php?name=$matches[1]&tap=$matches[2]&ep=$matches[3]',				
-				
+		'xem-phim/([^/]+)/tap-([^/]+)\.([^/]+)?$' => 'index.php?name=$matches[1]&tap=$matches[2]&ep=$matches[3]',
+
     ) + $wp_rewrite->rules;
 }
 add_action( 'generate_rewrite_rules', 'rewrite_permalink_post' );
@@ -1073,16 +1075,16 @@ function get_tap_phim( $public_query_vars ) {
 function get_sv_phim( $public_query_vars ) {
 		$public_query_vars[] = 'sv';
 		return $public_query_vars;
-	}	
+	}
 function get_pagea( $public_query_vars ) {
 		$public_query_vars[] = 'paged';
 		return $public_query_vars;
-	}	
+	}
 function get_ten_phim( $public_query_vars ) {
 		$public_query_vars[] = 'tap';
 		return $public_query_vars;
 	}
-	
+
 function new_rel_canonical() {
 echo '<link rel="canonical" href="http://'.$_SERVER["HTTP_HOST"].''.parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH).'" />';
 

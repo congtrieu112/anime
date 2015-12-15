@@ -1,15 +1,14 @@
 <?php get_header();?>
-<?php		
-$u = $wpdb->query("UPDATE ".DATA_FILM_META." 
-							SET  
-								film_viewed = film_viewed + 1 
-								, film_viewed_d = film_viewed_d + 1 
-								, film_viewed_w = film_viewed_w + 1 
-								, film_viewed_m = film_viewed_m + 1 
-							WHERE film_id = '".$post->ID."'");
-?>		
 <?php
-
+$u = $wpdb->query("UPDATE ".DATA_FILM_META."
+							SET
+								film_viewed = film_viewed + 1
+								, film_viewed_d = film_viewed_d + 1
+								, film_viewed_w = film_viewed_w + 1
+								, film_viewed_m = film_viewed_m + 1
+							WHERE film_id = '".$post->ID."'");
+?>
+<?php
 $categories = get_the_category();
 $seperator = ", ";
 $output = '';
@@ -23,6 +22,9 @@ $idtap = get_query_var('ep');
 $sv = get_query_var('sv');
 $idphim=get_the_ID();
 $permalink = get_permalink( $idphim );
+$image =  get_post_meta($post->ID,'Image',true);
+$title = $post->post_title;
+$description = custom_excerpt($post->post_content,10,'...');
 ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post();?>

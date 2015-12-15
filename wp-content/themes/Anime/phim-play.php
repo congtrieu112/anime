@@ -14,14 +14,9 @@ var _setAdsAccountAd123="567";(function(d,j,o,c){if(d.getElementById(j)!=null) r
             <div class="player ">
              <div class="player_spot">
                  <div id="media" >
-<script type="text/javascript" src="<?php bloginfo('template_directory');?>/js/jwplayer.js">  </script>	
-
 <div class="default-video">
-				<video width="640" height="352" controls>
 				<div id="mediaplayer"></div>
-				<?php echo getlinkphim($idphim,$idtap,$sv);?>
-					
-				</video>
+				<?php echo getlinkphim($idphim,$idtap,$sv,$image,$title,$description,$idtap);?>
 			</div>
 
 

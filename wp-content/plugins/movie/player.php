@@ -8,67 +8,36 @@ function cut_str($str_cut,$str_c,$val)
 }
 
 
-function players($url,$sub=""){
+function players($url,$sub="",$image,$title,$description,$postid){
 global $wpdb;$type=acp_type($url);
+if(strpos($url,'picasaweb.google.com')){
+    $file =  picasa_web($url);
+}elseif(strpos($url,'drive.google.com')||strpos($url,'docs.google.com')){
+    $file =  drive_direct($url);
+}elseif(strpos($url,'facebook.com')) {
+    $file =  get_face_video($_POST['link']);
+}elseif(strpos($url,'youtube.com')){
+    $file =  get_youtube($url);
+}
 
-
-//$url = get_link_total($url);
 if($type==11 or $type==101) $player='<iframe width="100%" height="100%" src="'.$url.'" frameborder="0" allowfullscreen></iframe>';
 elseif($type==96 ) $player='<iframe width="100%" height="100%" src="'.$url.'" frameborder="0" allowfullscreen></iframe>';
 else
 
-$player = '<script type="text/javascript">
-	jwplayer("mediaplayer").setup({
-    "flashplayer": "http://test.vn/zp-bootstrap-theme/assets/jwplayer/jwplayer.flash.swf",
-    "width": "100%",
-    "height": "100%",
-    "proxy.link": "'.$url.'",
-	"repeat": "list",
-    "autostart": "true",
 
-
-
-
-"skin":"http://test.vn/zp-bootstrap-theme/assets/jwplayer/five.xml",
-"controlbar":"bottom",
-    "plugins": "captions,timeslidertooltipplugin-2, fbit-1,http://player.xixam.com/plugins5/proxy.swf",
-    "captions.file": "$sub",
-    "captions.color": "#FFCC00",
-    "captions.fontFamily": "Palatino Linotype",
-    "captions.fontSize": "16",
-	"logo.file":       "http://24hphim.net/player/logo.png",
-	"logo.position":       "top-left",
-	"logo.margin":       "18",
-	"logo.over":       "1",
-	"logo.out":       "1",
-	"logo.hide":       "false",
-	events: {
-            onComplete: function autonext() {
-	 Phim3s.Watch.autoNextExecute();
-}
-
-        }
-	});
-	</script>';
 $player = '<script type="text/javascript">
       var playerInstance = jwplayer("mediaplayer");
       playerInstance.setup({
-        sources: [{
-            file: "'.$url.'",label:"360"
-          }, {
-            file: "http://222.255.123.4/vod/TRUYENHINH/NGHETHUATTONGHOP/BANMUONHENHO/BMHH23_10_2015.mp4",label:"720"
-          }, {
-            file: "http://222.255.123.4/vod/TRUYENHINH/NGHETHUATTONGHOP/BANMUONHENHO/BMHH23_10_2015.mp4",label:"1028"
-            
-          }],
-        image: "http://haugiangtivi.vn/Media/Images/Video/d0720ab644464b68ae03ee7e0eacbf48.jpg",
+        sources: ['.$file.'],
+        image: "'.$image.'",
         width: 670,
         height: 400,
-        title: "Basic Video Embed",
-        description: "A video with a basic title and description!",
-        mediaid: "123456"
+        title: "'.$title.'",
+        description: "'.$description.'",
+        mediaid: "'.$postid.'"
       });
     </script>';
+
 
 
 

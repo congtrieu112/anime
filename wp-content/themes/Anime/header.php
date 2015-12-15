@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title><?php wp_title( '-', true, 'right' ); ?> <?php bloginfo('name'); ?></title>
     <meta name="description" content="">
-   
+
     <meta name="revisit-after" content="2 days">
     <meta name="RATING" content="RTA-5042-1996-1400-1577-RTA">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +18,10 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.slides.min.js"></script>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/main.css" media="all">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css" media="all">
-            <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/dropzone.css">
-            <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/jwplayer_theme.css">
+             <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/dropzone.css"> 
+             <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/jwplayer_theme.css"> 
+            <script type="text/javascript" src="http://content.jwplatform.com/libraries/PSq4YSgZ.js"></script>
+    <script type="text/javascript">jwplayer.key = '83tV+S0kCYI/D2CIhRollTeLZBbTOcFO3ta94A=='</script>
 <style>
     #slides {
       display: none
@@ -68,13 +70,13 @@ $(document).ready(function() {
     $("#content").find("[id^='tab']").hide(); // Hide all content
     $("#tabs li:first").attr("id","current"); // Activate the first tab
     $("#content #tab1").fadeIn(); // Show first tab's content
-    
+
     $('#tabs a').click(function(e) {
         e.preventDefault();
         if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
-         return;       
+         return;
         }
-        else{             
+        else{
           $("#content").find("[id^='tab']").hide(); // Hide all content
           $("#tabs li").attr("id",""); //Reset id's
           $(this).parent().attr("id","current"); // Activate this
@@ -108,11 +110,11 @@ $(document).ready(function() {
             <i class="i i--size--xl i--color-brand"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><use xlink="http://www.w3.org/1999/xlink" xlink:href="#i--close"></use></svg></i>
         </a>
         <div class="modal__content"></div>
-    </div> 
-</div> 
+    </div>
+</div>
 <div class="wrap">
 	<div class="header">
-	
+
 	<div class="layout">
 	<div class="header-main">
 	<div class="header-main__left">
@@ -129,7 +131,7 @@ $(document).ready(function() {
 <img src="http://tonka3d.com.br/blog/wp-content/uploads/2011/03/tonka3d-banner-450x45.jpg">
 </div>
 </div>
-	
+
 	</div>
 	<div class="header-bottom">
 	<div class="header-nav">
