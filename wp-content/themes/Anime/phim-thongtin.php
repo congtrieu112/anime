@@ -39,15 +39,12 @@ $daodien = 'dao-dien';
             <div class="player ">
              <div class="player_spot">
                  <div id="media" >
-<script type="text/javascript" src="<?php bloginfo('template_directory');?>/js/jwplayer.js">  </script>	
-
-<div id="mediaplayer">
-</div><div class="default-video">
-				<video width="640" height="352" controls>
-				<?php echo getlinkphim($idphim,$idtap,$sv);?>
-					
-				</video>
+<div class="default-video">
+				<div id="mediaplayer"></div>
+				<?php echo getlinkphim($idphim,$idtap,$sv,$image,$title,$description,$idtap);?>
 			</div>
+
+
 </div>
               </div>
             </div>

@@ -848,6 +848,19 @@ return $permalink;
 }
 
 }
+function tapphim($film_id){
+	global $wpdb,$post;
+$list=$wpdb->get_results("SELECT episode_id, episode_name, episode_type, episode_url FROM wp_film_episode WHERE episode_film = '".$film_id."' order by episode_order limit 1 ");
+foreach ( $list as $value )
+{
+
+$tap=$value->episode_id;
+
+
+return $tap;
+}
+
+}
 function getlinkphim($idphim,$idtap,$sv='',$image,$title,$description,$postid){
 global $wpdb,$idtap;
 $episode_url = get_bloginfo('url')."/player-".$idtap."/";
